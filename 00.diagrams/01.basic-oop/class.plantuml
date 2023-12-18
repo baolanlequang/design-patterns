@@ -1,0 +1,16 @@
+@startuml BasicOOP Class
+skinparam ClassAttributeIconSize 0
+class Cat {
+  + name
+  + age
+  + gender
+  + weight
+  + color
+  ...
+  + breath()
+  + eat(food)
+  + run(destination)
+  + sleep(hours)
+  + meow()
+}
+@enduml
