@@ -1,0 +1,26 @@
+@startuml Composition
+skinparam ClassAttributeIconSize 0
+
+class Transport {
+  - engine
+  - driver
+  + deliver(destination, cargo)
+}
+
+interface Engine <<interface>> {
+  + move()
+}
+
+interface Driver <<interface>> {
+  + navigate()
+}
+
+Transport *-- Engine
+Transport o-- Driver
+
+class CombustionEngine implements Engine
+class ElectricEngine implements Engine
+
+class Robot implements Driver
+class Human implements Driver
+@enduml

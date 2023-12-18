@@ -1,0 +1,20 @@
+@startuml Inheritance
+skinparam ClassAttributeIconSize 0
+
+class Transport
+
+class Truck extends Transport
+class Car extends Transport
+
+class ElectricTruck extends Truck
+class CombustionEngineTruck extends Truck
+
+class ElectricCar extends Car
+class CombustionEngineCar extends Car
+
+class AutopilotElectricTruck extends ElectricTruck
+class AutopilotCombustionEngineTruck extends CombustionEngineTruck
+
+class AutopilotElectricCar extends ElectricCar
+class AutopilotCombustionEngineCar extends CombustionEngineCar
+@enduml

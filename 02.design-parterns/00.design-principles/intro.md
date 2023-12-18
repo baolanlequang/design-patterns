@@ -61,3 +61,20 @@ Lập trình tương tác đến một interface, chứ không phải là một 
 Ví dụ về class Cat và Company
 
 ![Program to an Interface](/out//00.diagrams/02.design-parterns/00.design-principles/program_to_interface/Program%20to%20an%20Interface.png)
+
+
+### 3. Favor Composition over Inheritance (ưu tiên composition hơn là inheritance)
+Các vấn đề của inheritance
+* Một subcalss không thể cắt giảm interface của superclass => phải implement hết tất cả các interface của superclass
+* Khi overriding các method cần phải đảm bảo hoạt động mới phải tương thích với base method.
+* Inheritance phá vỡ encapsulation của superclass bởi vì chi tiết của superclass có ở subclass.
+* Subclass gắn hc8at5 với superclass. Bất kỳ thay đổi nào của superclass cũng có thể phá vỡ hoạt động của subclass.
+* Sử dụng lại code thông qua inheritance có thể hiện tượng parallel inheritance.
+
+Ví dụ về vấn đề inheritance
+
+![Inheritance](/out//00.diagrams/02.design-parterns/00.design-principles/inheritance/Inheritance.png)
+
+Chuyển sang sử dụng composition và aggregation
+
+![Composition](/out//00.diagrams/02.design-parterns/00.design-principles/composition/Composition.png)
