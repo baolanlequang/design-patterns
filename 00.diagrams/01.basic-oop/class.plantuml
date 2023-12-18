@@ -3,7 +3,7 @@ skinparam ClassAttributeIconSize 0
 class Cat {
   + name
   + age
-  + gender
+  + sex
   + weight
   + color
   ...
@@ -12,5 +12,23 @@ class Cat {
   + run(destination)
   + sleep(hours)
   + meow()
+}
+
+object "Oscar: Cat" as catOscar {
+  name = "Oscar"
+  sex = "male"
+  age = 3
+  weight = 7
+  color = brow
+  texture = strippd
+}
+
+object "Luna: Cat" as catLuna {
+  name = "Luna"
+  sex = "female"
+  age = 2
+  weight = 5
+  color = gray
+  texture = plain
 }
 @enduml
