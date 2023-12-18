@@ -25,10 +25,18 @@ Tất cả các quá trình này được thực hiện qua một **interface**,
 *Encapsulation* là khả năng của một object để ẩn các trạng thái và hành động của nó khỏi các object khác, chỉ giao tiếp qua interface.
 
 Ví dụ về class Cat và Dog kế thừa từ class Animal
+
 ![Encapsulation example](/out//00.diagrams/01.basic-oop/encapsulation/Encapsulation.png)
 
 ### 3. Inheritance
 *Inheritance* là khả năng tạo một class mới dựa trên class đã có sẵn. Lợi điểm chính của inheritance là sử dụng lại code.
 
 Ví dụ về class Cat từ class Animal và bao gồm 2 interface của class Animal là FourLegged và OxygenBreather
+
 ![Inheritance example](/out//00.diagrams/01.basic-oop/inheritance/Inheritance.png)
+
+### 3. Polymorphism
+Hầu hết các loài thú vật đề có thể tạo ra âm thanh, nhưng mỗi loài thì có một loại âm thanh khác nhau. Do đó chúng ta có thể đặt class Animal là `abstract` và các method trong nó cũng là `abstract` như sau:
+
+![Polymorphism example](/out//00.diagrams/01.basic-oop/polymorphism/Polymorphism.png)
+ 

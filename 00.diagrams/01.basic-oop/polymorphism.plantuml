@@ -1,0 +1,22 @@
+@startuml Polymorphism
+skinparam ClassAttributeIconSize 0
+abstract class Animal {
+  {abstract} + makeSound()
+}
+
+class Cat extends Animal  {
+  + makeSound()
+}
+
+class Dog extends Animal  {
+  + makeSound()
+}
+
+note left of Cat::makeSound
+  print("Meow!")
+end note
+
+note right of Dog::makeSound
+  print("Bark!")
+end note
+@enduml
