@@ -1,0 +1,24 @@
+@startuml Single Responsibility Principle
+skinparam ClassAttributeIconSize 0
+
+package Before <<Rectangle>> {
+  class "Employee" as Employee1 {
+    - name
+    + getName()
+    + printTimeSheetReport()
+  }
+}
+
+package After <<Rectangle>> {
+  class "Employee" as Employee2 {
+    - name
+    + getName()
+  }
+
+  class TimeSheetReport {
+    + print(employee)
+  }
+
+  TimeSheetReport .> Employee2
+}
+@enduml

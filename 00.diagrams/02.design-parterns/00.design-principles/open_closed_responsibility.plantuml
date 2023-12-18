@@ -1,0 +1,73 @@
+@startuml Open/Closed Principle
+skinparam ClassAttributeIconSize 0
+
+package Before <<Rectangle>> {
+  class "Order" as Order1 {
+    - lineItems
+    - shipping
+    + getTotal()
+    + getTotalWeight()
+    + setShippingType(st)
+    + getShippingCost()
+    + getShippingDate()
+  }
+
+  note left of Order1::getShippingCost
+    if (shipping == "ground") {
+      // Free ground delivery on big orders
+      if (getTotal() > 100) {
+        return 0
+      }
+      // $1.5 per kilogram, but $10 minimum
+      return max(10, getTotalWeight() * 1.5)
+    }
+
+    if (shipping == "air") {
+      // $3 per kilogram, but $20 minimum
+      return max(20, getTotalWeight() * 3)
+    }
+  end note
+}
+
+package After <<Rectangle>> {
+  class "Order" as Order2 {
+    - lineItems
+    - shipping
+    + getTotal()
+    + getTotalWeight()
+    + setShippingType(st)
+    + getShippingCost()
+    + getShippingDate()
+  }
+
+  interface Shipping <<interface>> {
+    + getCost(order)
+    + getDate(order)
+  }
+
+  class Ground implements Shipping {
+    + getCost(order)
+    + getDate(order)
+  }
+
+  class Air implements Shipping {
+    + getCost(order)
+    + getDate(order)
+  }
+
+  Order2 o- Shipping
+
+  note left of Order2::getShippingCost
+    return shipping.getCost(self)
+  end note
+
+  note left of Ground::getCost
+    // Free ground delivery on big orders
+    if (getTotal() > 100) {
+      return 0
+    }
+    // $1.5 per kilogram, but $10 minimum
+    return max(10, getTotalWeight() * 1.5)
+  end note
+}
+@enduml
