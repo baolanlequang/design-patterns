@@ -1,0 +1,8 @@
+@startuml Association
+skinparam ClassAttributeIconSize 0
+class Professor
+class Student
+
+Professor -> Student
+
+@enduml

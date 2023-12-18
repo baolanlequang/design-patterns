@@ -40,3 +40,43 @@ Hầu hết các loài thú vật đề có thể tạo ra âm thanh, nhưng m�
 
 ![Polymorphism example](/out//00.diagrams/01.basic-oop/polymorphism/Polymorphism.png)
  
+
+ ## Quan hệ giữa các object
+ ### 1. Dependency
+ *Dependency* là mối quan hệ cơ bản nhất và yếu nhất trong quan hệ giữa các object. Mối quan hệ này tạo ra việc khi một class có thay đổi thì class còn lại cũng sẽ thay đổi.
+ Chúng ta có thể làm cho mối quan hệ dependency này yếu hơn bằng cách sử dụng các inteface hoặc các abstract class.
+
+ Ví dụ về class `Professor` phụ thuộc vào `Course`
+
+ ![Dependency example](/out//00.diagrams/01.basic-oop/dependency/Dependency.png)
+
+ ### 2. Association
+ *Association* là quan hệ khi một object sử dụng hay tương tác với một object khác.
+
+Ví dụ về class `Professor` tương tác với `Student`
+
+![Association example](/out//00.diagrams/01.basic-oop/association/Association.png)
+
+```swift
+class Professor:
+    var student: Student
+
+    func teach(course: Course) {
+        self.student.remember(course.getKnowledge())
+    }
+```
+
+### 3. Aggregation
+*Aggregation* là một loại associtaion đặc biệt để biểu diễn mối quan hệ `one-to-many`, `many-to-many` hoặc `whole-part` giữa các object.
+Các component có thể tồn tại mà không cần container hoặc có thể liên kết với nhiều container khác cùng một lúc.
+
+Ví dụ về class `Professor` thuộc container `Department`, `Professor` có thể tồn tại mà không cần thuộc bất kỳ một `Department` nào hoặc thuộc nhiều `Department` cùng một lúc.
+
+![Aggregation example](/out//00.diagrams/01.basic-oop/aggregation/Aggregation.png)
+
+### 3. Composition
+*Composition* là một loại aggregation đặc biệt. Các component chỉ có thể tồn tại khi container tồn tại.
+
+Ví dụ class `Department` gắn với `University` và chỉ có thể tồn tại khi `University` tồn tại.
+
+![Composition example](/out//00.diagrams/01.basic-oop/composition/Composition.png)

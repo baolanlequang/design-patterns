@@ -1,0 +1,8 @@
+@startuml Aggregation
+skinparam ClassAttributeIconSize 0
+class Professor
+class Department
+
+Department o- Professor
+
+@enduml

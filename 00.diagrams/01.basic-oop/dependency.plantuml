@@ -1,0 +1,8 @@
+@startuml Dependency
+skinparam ClassAttributeIconSize 0
+class Professor
+class Course
+
+Professor .> Course
+
+@enduml

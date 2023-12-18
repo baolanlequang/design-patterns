@@ -1,0 +1,8 @@
+@startuml Composition
+skinparam ClassAttributeIconSize 0
+class University
+class Department
+
+University *- Department
+
+@enduml
