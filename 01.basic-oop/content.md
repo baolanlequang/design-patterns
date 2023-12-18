@@ -19,3 +19,16 @@ Ví dụ như máy bay thì có thể là máy bay thật hoặc máy bay ảo, 
 
 
 ### 2. Encapsulation
+Để khởi động một chiếc xe, chúng ta chỉ cần mở khoá và nhấn nút khởi động. Chúng ta không cần phải kết nối bình xăng, đường xây điện, bộ đánh lửa....
+Tất cả các quá trình này được thực hiện qua một **interface**, đó là một public part của một object để tương tác với các object khác.
+
+*Encapsulation* là khả năng của một object để ẩn các trạng thái và hành động của nó khỏi các object khác, chỉ giao tiếp qua interface.
+
+Ví dụ về class Cat và Dog kế thừa từ class Animal
+![Encapsulation example](/out//00.diagrams/01.basic-oop/encapsulation/Encapsulation.png)
+
+### 3. Inheritance
+*Inheritance* là khả năng tạo một class mới dựa trên class đã có sẵn. Lợi điểm chính của inheritance là sử dụng lại code.
+
+Ví dụ về class Cat từ class Animal và bao gồm 2 interface của class Animal là FourLegged và OxygenBreather
+![Inheritance example](/out//00.diagrams/01.basic-oop/inheritance/Inheritance.png)

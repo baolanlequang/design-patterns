@@ -1,0 +1,25 @@
+@startuml Encapsulation
+skinparam ClassAttributeIconSize 0
+class Airport {
+  + accept(vehicle: FlyingTransport)
+}
+
+interface FlyingTransport <<interface>> {
+  + fly(origin, destination, passengers)
+}
+
+class Helicopter implements FlyingTransport {
+  + fly(origin, destination, passengers)
+}
+
+class Airplan implements FlyingTransport {
+  + fly(origin, destination, passengers)
+}
+
+class DemesticatedGryphon implements FlyingTransport {
+  + fly(origin, destination, passengers)
+}
+
+Airport --> FlyingTransport
+
+@enduml

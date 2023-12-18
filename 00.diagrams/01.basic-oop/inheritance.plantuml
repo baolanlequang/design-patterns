@@ -1,0 +1,17 @@
+@startuml Inheritance
+skinparam ClassAttributeIconSize 0
+class Animal
+
+interface FourLegged <<interface>> {
+  + run(destination)
+}
+
+interface OxygenBreather <<interface>> {
+  + breathe()
+}
+
+class Cat extends Animal
+
+Cat --[dashed]|> FourLegged
+Cat --[dashed]|> OxygenBreather
+@enduml
