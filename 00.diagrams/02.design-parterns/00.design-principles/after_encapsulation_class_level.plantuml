@@ -1,0 +1,30 @@
+@startuml After Encapsulation Class Level
+skinparam ClassAttributeIconSize 0
+
+class Order {
+  - lineItems
+  - country
+  - state
+  - city
+  + getOrderTotal()
+}
+
+class TaxCalculator {
+  ...
+  + getTaxRate(country, state, product)
+  - getUSTax(state)
+  - getEUTax(country)
+  - getVietnameseTax(product)
+}
+
+Order -> TaxCalculator
+
+note left of Order::getOrderTotal
+  total = 0
+  for item in lineItems:
+    subtotal = item.price * item.quantity
+    total += subtotal * taxCalc.getTaxRate(country, state, item.product)
+
+  return total
+end note
+@enduml

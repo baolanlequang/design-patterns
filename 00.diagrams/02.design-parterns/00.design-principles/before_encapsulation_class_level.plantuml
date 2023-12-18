@@ -1,0 +1,14 @@
+@startuml Before Encapsulation Class Level
+skinparam ClassAttributeIconSize 0
+
+class Order {
+  - lineItems
+  - country
+  - state
+  - city
+  ...20+ fields
+  + getOrderTotal()
+  + getTaxRate(country, state, product)
+}
+
+@enduml

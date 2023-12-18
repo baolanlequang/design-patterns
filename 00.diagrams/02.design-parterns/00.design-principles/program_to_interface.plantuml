@@ -1,0 +1,47 @@
+@startuml Program to an Interface
+skinparam ClassAttributeIconSize 0
+
+class Cat {
+  - enegery
+  + eat(Food s)
+}
+
+interface Food <<interface>> {
+  + getNutrition()
+}
+
+class Sausage implements Food {
+  + getNutrition()
+  + getColor()
+  + getExpiration()
+}
+
+Cat ..> Food
+
+
+abstract class Company {
+  {abstract} + getEmployees()
+  + createSoftware()
+}
+
+class GameDevCompany extends Company {
+  + getEmployees()
+}
+
+class OutsourceCompany extends Company {
+  + getEmployees()
+}
+
+interface Employee <<interface>> {
+  + doWork()
+}
+
+class Designer implements Employee {
+  + doWork()
+}
+
+Company -> Employee
+
+GameDevCompany --> Designer
+OutsourceCompany --> Designer
+@enduml
