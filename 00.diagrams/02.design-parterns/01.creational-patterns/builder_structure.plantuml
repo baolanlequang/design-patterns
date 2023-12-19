@@ -1,0 +1,46 @@
+@startuml Builder Structure
+skinparam ClassAttributeIconSize 0
+
+interface Builder <<interface>> {
+  + reset()
+  + buildStepA()
+  + buildStepB()
+  + buildStepZ()
+}
+
+class ConcreteBuilder1 implements Builder {
+  + reset()
+  + buildStepA()
+  + buildStepB()
+  + buildStepZ()
+  + getResult(): Product1
+}
+
+class ConcreteBuilder2 implements Builder {
+  + reset()
+  + buildStepA()
+  + buildStepB()
+  + buildStepZ()
+  + getResult(): Product2
+}
+
+class Director {
+  - builder: Builder
+  + Director(builder)
+  + changeBuilder(builder)
+  + make(type)
+}
+
+Director -> Builder
+
+class Client
+
+Client --> Director
+Client ..> ConcreteBuilder1
+
+class Product1
+class Product2
+
+ConcreteBuilder1 --> Product1
+ConcreteBuilder2 --> Product2
+@enduml

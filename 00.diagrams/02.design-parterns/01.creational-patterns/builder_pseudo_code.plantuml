@@ -1,0 +1,49 @@
+@startuml Builder Pseudocode
+skinparam ClassAttributeIconSize 0
+
+interface Builder <<interface>> {
+  + reset()
+  + setSeats(number)
+  + setEngine(engine)
+  + setTripComputer()
+  + setGPS()
+}
+
+class CarBuilder implements Builder {
+  - car: Car
+  + reset()
+  + setSeats(number)
+  + setEngine(engine)
+  + setTripComputer()
+  + setGPS()
+  + getResult(): Car
+}
+
+class CarManualBuilder implements Builder {
+  - manual: Manual
+  + reset()
+  + setSeats(number)
+  + setEngine(engine)
+  + setTripComputer()
+  + setGPS()
+  + getResult(): Manual
+}
+
+class Director {
+  + makeSUV(builder)
+  + makeSportCar(builder)
+}
+
+Director -> Builder
+
+class Client
+
+Client --> Director
+Client ..> CarBuilder
+
+class Car
+class Manual
+
+CarBuilder --> Car
+CarManualBuilder --> Manual
+@enduml
