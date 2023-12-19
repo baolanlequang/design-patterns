@@ -27,3 +27,18 @@ Cần đảm bảo các điều sau:
 Ví dụ:
 
 ![Liskov Substitution Principle](/out//00.diagrams/02.design-parterns/00.design-principles/liskov_substitution/Liskov%20Substitution%20Principle.png)
+
+## 4. Interface Segregation Principle
+**Sử dụng interface vừa đủ sao cho các class implement interface không cần phải implement các method mà nó không cần**
+
+Ví dụ:
+
+![Interface Segregation Principle](/out//00.diagrams/02.design-parterns/00.design-principles/interface_segregation/Interface%20Segregation%20Principle.png)
+
+## 5. Dependency Inversion Principle
+**Các high-level class không nên phụ thuộc vào các low-level class. Cả hai nên phụ thuộc vào abstraction. Abstraction không nên phụ thuộc vào detail**
+
+
+Ví dụ:
+
+![Dependency Inversion Principle](/out//00.diagrams/02.design-parterns/00.design-principles/dependency_inversion/Dependency%20Inversion%20Principle.png)

@@ -1,0 +1,70 @@
+@startuml Interface Segregation Principle
+skinparam ClassAttributeIconSize 0
+
+package Before <<Rectangle>> {
+  interface "CloudProvider" as CloudProvider1 <<interface>> {
+    + storeFile(name)
+    + getFile(name)
+    + createServer(region)
+    + listServers(region)
+    + getCDNAddress()
+  }
+
+  class "Amazon" as Amazon1 implements CloudProvider1 {
+    + storeFile(name)
+    + getFile(name)
+    + createServer(region)
+    + listServers(region)
+    + getCDNAddress()
+  }
+
+  class "Dropbox" as Dropbox1 implements CloudProvider1 {
+    + storeFile(name)
+    + getFile(name)
+    + createServer(region)
+    + listServers(region)
+    + getCDNAddress()
+  }
+
+  note right of Dropbox1::createServer
+    Not implemented.
+  end note
+
+  note right of Dropbox1::listServers
+    Not implemented.
+  end note
+
+  note right of Dropbox1::getCDNAddress
+    Not implemented.
+  end note
+}
+
+package After <<Rectangle>> {
+  interface CloudHostingProvider <<interface>> {
+    + createServer(region)
+    + listServers()
+  }
+
+  interface CDNProvider <<interface>> {
+    + getCDNAddress()
+  }
+
+  interface CloudStorageProvider <<interface>> {
+    + storeFile(name)
+    + getFile(name)
+  }
+
+  class "Amazon" as Amazon2 implements CloudHostingProvider, CDNProvider, CloudStorageProvider {
+    + storeFile(name)
+    + getFile(name)
+    + createServer(region)
+    + listServers(region)
+    + getCDNAddress()
+  }
+
+  class "Dropbox" as Dropbox2 implements CloudStorageProvider {
+    + storeFile(name)
+    + getFile(name)
+  }
+}
+@enduml

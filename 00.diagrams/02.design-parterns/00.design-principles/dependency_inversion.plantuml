@@ -1,0 +1,55 @@
+@startuml Dependency Inversion Principle
+skinparam ClassAttributeIconSize 0
+
+package Before <<Rectangle>> {
+  component "High level" as HL1 {
+    class "BudgetReport" as BR1 {
+      - database
+      + open(date)
+      + save()
+    }
+  }
+
+  component "Low level" as LL1 {
+    class "MySQLDatabase" as MySQL1 {
+      + insert()
+      + update()
+      + delete()
+    }
+  }
+
+  MySQL1 <- BR1
+}
+
+package After <<Rectangle>> {
+  component "High level" as HL2 {
+    class "BudgetReport" as BR2 {
+      - database
+      + open(date)
+      + save()
+    }
+
+    interface Database <<interface>> {
+      + insert()
+      + update()
+      + delete()
+    }
+
+    Database <- BR2
+  }
+
+  component "Low level" as LL2 {
+    class "MySQL" as MySQL2 implements Database {
+      + insert()
+      + update()
+      + delete()
+    }
+
+    class "MongDB" as MongDB implements Database {
+      + insert()
+      + update()
+      + delete()
+    }
+  }
+}
+@enduml
