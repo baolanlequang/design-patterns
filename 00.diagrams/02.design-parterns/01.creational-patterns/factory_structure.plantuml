@@ -1,0 +1,25 @@
+@startuml Factory Structure
+skinparam ClassAttributeIconSize 0
+
+abstract class Creator {
+  + someOperation()
+  {abstract} + createProduct(): Product
+}
+
+interface Product <<interface>> {
+  + doStuff()
+}
+
+class ConcreteCreatorA extends Creator {
+  + createProduct(): Product
+}
+
+class ConcreteCreatorB extends Creator {
+  + createProduct(): Product
+}
+
+class ConcreteProductA implements Product
+class ConcreteProductB implements Product
+
+Creator .> Product
+@enduml

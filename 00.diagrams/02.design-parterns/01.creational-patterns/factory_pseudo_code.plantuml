@@ -1,0 +1,36 @@
+@startuml Factory Pseudocode
+skinparam ClassAttributeIconSize 0
+
+abstract class Dialog {
+  + render()
+  {abstract} + createButton(): Button
+}
+
+note left of Dialog::render
+  let okButton = createButton()
+  okButton.onClick(closeDialog)
+  okButton.render()
+end note
+
+interface Button <<interface>> {
+  + render()
+  + onClick()
+}
+
+class WindowsDialog extends Dialog {
+  + createButton(): Button
+}
+
+class WebDialog extends Dialog {
+  + createButton(): Button
+}
+
+note left of WindowsDialog::createButton
+  return WindowsButton()
+end note
+
+class WindowsButton implements Button
+class HTMLButton implements Button
+
+Dialog .> Button
+@enduml
