@@ -1,0 +1,44 @@
+@startuml Abstract Factory Pseudocode
+skinparam ClassAttributeIconSize 0
+
+interface GUIFactory <<interface>> {
+  + createButton(): Button
+  + createCheckbox(): Checkbox
+}
+
+class WinFactory implements GUIFactory {
+  + createButton(): Button
+  + createCheckbox(): Checkbox
+}
+
+class MacFactory implements GUIFactory {
+  + createButton(): Button
+  + createCheckbox(): Checkbox
+}
+
+abstract class Button
+
+class WinButton extends Button
+class MacButton extends Button
+
+abstract class Checkbox
+
+class WinCheckbox extends Checkbox
+class MacCheckbox extends Checkbox
+
+WinFactory ..> WinButton
+WinFactory ..> WinCheckbox
+
+MacFactory ..> MacButton
+MacFactory ..> MacCheckbox
+
+class Application {
+  - factory: GUIFactory
+  - button: Button
+  + Application(f: GUIFactory)
+  + createUI()
+  + paint()
+}
+
+Application -> GUIFactory
+@enduml
