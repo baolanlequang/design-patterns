@@ -1,0 +1,75 @@
+@startuml Liskov Substitution Principle
+skinparam ClassAttributeIconSize 0
+
+package Before <<Rectangle>> {
+  class "Document" as Document1 {
+    - data
+    - filename
+    + open()
+    + save()
+  }
+
+  class "Project" as Project1 {
+    - documents
+    + openAll()
+    + saveAll()
+  }
+
+  class "ReadOnlyDocument" as ReadOnlyDocument1 extends Document1 {
+    + save()
+  }
+
+  Document1 -* Project1
+
+  note right of Project1::openAll
+    for (doc in documents) {
+      doc.open()
+    }
+  end note
+
+  note right of Project1::saveAll
+    for (doc in documents) {
+      if !(doc is ReadOnlyDocument) {
+        doc.save()
+      }
+    }
+  end note
+
+  note right of ReadOnlyDocument1::save
+    throw new Exception("Unable to save read-only file")
+  end note
+}
+
+package After <<Rectangle>> {
+  class "Document" as Document2 {
+    - data
+    - filename
+    + open()
+  }
+
+  class "Project" as Project2 {
+    - allDocs
+    - writableDocs
+    + openAll()
+    + saveAll()
+  }
+
+  class "WritableDocument" as WritableDocument extends Document2 {
+    + save()
+  }
+
+  Document2 -* Project2
+
+  note right of Project2::openAll
+    for (doc in allDocs) {
+      doc.open()
+    }
+  end note
+
+  note right of Project2::saveAll
+    for (doc in writableDocs) {
+      doc.save()
+    }
+  end note
+}
+@enduml
