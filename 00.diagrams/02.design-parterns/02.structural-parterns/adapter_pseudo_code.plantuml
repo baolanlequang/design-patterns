@@ -1,4 +1,4 @@
-@startuml Singleton Pseudocode
+@startuml Adaper Pseudocode
 skinparam ClassAttributeIconSize 0
 
 class RoundHole {

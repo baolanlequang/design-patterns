@@ -1,0 +1,33 @@
+@startuml Bridge Structure
+skinparam ClassAttributeIconSize 0
+
+class Client
+
+rectangle Bridge {
+  class Abstraction {
+    - i: Implementation
+    + feature1()
+    + feature2()
+  }
+
+  interface Implementation <<interface>> {
+    + method1()
+    + method2()
+    + method3()
+  }
+}
+
+class "Refined Abstraction" as RefinedAbstraction {
+  + featureN()
+}
+
+class ConcreteImplementation implements Implementation
+
+Client --> Abstraction
+
+Abstraction o-> Implementation
+
+RefinedAbstraction --|> Abstraction :(optional)
+
+
+@enduml

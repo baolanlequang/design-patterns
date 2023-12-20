@@ -1,0 +1,39 @@
+@startuml Bridge Pseudocode
+skinparam ClassAttributeIconSize 0
+
+class Client
+
+rectangle Bridge {
+  class Remote {
+    - device: Device
+    + togglePower()
+    + volumeDown()
+    + volumeUp()
+    + channelDown()
+    + channelUp()
+  }
+
+  interface Device <<interface>> {
+    + isEnable()
+    + enable()
+    + disable()
+    + getVolume()
+    + setVolume(percent)
+    + getChannel()
+    + setChannel(channel)
+  }
+}
+
+class AdvancedRemote extends Remote {
+  + mute()
+}
+
+class Radio implements Device
+
+class TV implements Device
+
+Client --> Remote
+
+Remote o-> Device
+
+@enduml
