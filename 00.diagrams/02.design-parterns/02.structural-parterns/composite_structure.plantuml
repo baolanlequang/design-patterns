@@ -1,0 +1,27 @@
+@startuml Composite Structure
+skinparam ClassAttributeIconSize 0
+
+class Client
+
+interface Component <<interface>> {
+  + execute()
+}
+
+class Leaf implements Component {
+  + execute()
+}
+
+class Composite implements Component {
+  - children: Component[]
+  + add(c: Component)
+  + remove(c: Component)
+  + getChildren(): Component[]
+  + execute()
+}
+
+Composite o--> Component
+
+Client --> Component
+
+
+@enduml

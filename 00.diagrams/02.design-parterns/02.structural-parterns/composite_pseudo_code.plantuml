@@ -1,0 +1,36 @@
+@startuml Composite Pseudocode
+skinparam ClassAttributeIconSize 0
+
+class ImageEditor
+
+interface Graphic <<interface>> {
+  + move(x, y)
+  + draw()
+}
+
+class Dot implements Graphic {
+  x, y
+  + Dot(x, y)
+  + move(x, y)
+  + draw()
+}
+
+class CompoundGraphic implements Graphic {
+  - children: Graphic[]
+  + add(child: Graphic)
+  + remove(child: Graphic)
+  + move(x, y)
+  + draw()
+}
+
+class Circle extends Dot {
+  radius
+  + Circle(x, y, radius)
+  + draw()
+}
+
+CompoundGraphic o--> Graphic
+
+ImageEditor --> Graphic
+
+@enduml
