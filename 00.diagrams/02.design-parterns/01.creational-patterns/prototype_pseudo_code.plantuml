@@ -1,0 +1,27 @@
+@startuml Prototype Pseudocode
+skinparam ClassAttributeIconSize 0
+
+class Application
+
+abstract class Shape {
+  - x, y
+  - color
+  + Shape(source)
+  {abstract} + clone()
+}
+
+class Rectangle extends Shape {
+  - width
+  - height
+  + Rectangle()
+  + clone()
+}
+
+class Circle extends Shape {
+  - radius
+  + Circle()
+  + clone()
+}
+
+Application o-> Shape
+@enduml

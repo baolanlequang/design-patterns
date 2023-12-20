@@ -1,0 +1,16 @@
+@startuml Singleton Pseudocode
+skinparam ClassAttributeIconSize 0
+
+class Application
+
+class Database {
+  - instance: Database
+  - Database()
+  + getInstance(): Database
+  + query(sql)
+}
+
+Database::instance --> Database
+
+Application -> Database
+@enduml

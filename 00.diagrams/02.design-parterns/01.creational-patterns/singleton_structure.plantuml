@@ -1,0 +1,15 @@
+@startuml Singleton Structure
+skinparam ClassAttributeIconSize 0
+
+class Client
+
+class Singleton {
+  - instance: Singleton
+  - Singleton()
+  + getInstance(): Singleton
+}
+
+Singleton::instance --> Singleton
+
+Client -> Singleton
+@enduml

@@ -1,0 +1,28 @@
+@startuml Prototype Registry Structure
+skinparam ClassAttributeIconSize 0
+
+class Client
+
+class PrototypeRegistry {
+  - items: Prototype[]
+  + addItem(id: string, p: Prototype)
+  + getById(id: string): Prototype
+  + getByColor(color: string): Prototype
+}
+
+Client --> PrototypeRegistry
+
+interface Prototype <<interface>> {
+  + getColor(): string
+  + clone(): Prototype
+}
+
+class Button implements Prototype {
+  - x, y, color
+  + Button(prototype)
+  + getColor(): string
+  + clone(): Prototype
+}
+
+PrototypeRegistry o- Prototype
+@enduml

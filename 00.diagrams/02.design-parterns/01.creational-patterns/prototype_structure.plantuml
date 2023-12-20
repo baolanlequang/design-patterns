@@ -1,0 +1,23 @@
+@startuml Prototype Structure
+skinparam ClassAttributeIconSize 0
+
+class Client
+
+interface Prototype <<interface>> {
+  + clone(): Prototype
+}
+
+class ConcretePrototype implements Prototype {
+  - field1
+  + ConcretePrototype(prototype)
+  + clone(): Prototype
+}
+
+class SubclassPrototype extends ConcretePrototype {
+  - field2
+  + SubclassPrototype(prototype)
+  + clone(): Prototype
+}
+
+Client -> Prototype
+@enduml
