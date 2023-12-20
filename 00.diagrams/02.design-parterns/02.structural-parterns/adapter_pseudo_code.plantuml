@@ -1,0 +1,31 @@
+@startuml Singleton Pseudocode
+skinparam ClassAttributeIconSize 0
+
+class RoundHole {
+  - radius: int
+  + RoundHole(radius: int)
+  + getRadius(): int
+  + fits(pegs: RoundPeg): bool
+}
+
+class RoundPeg {
+  - radius: int
+  + RoundPeg(radius: int)
+  + getRadius(): int
+}
+
+class SquarePeg {
+  - width: int
+  + SquarePeg(width: int)
+  + getWidth(): int
+}
+
+class SquarePegAdapter extends RoundPeg {
+  - peg: SquarePeg
+  + SquarePegAdapter(peq: SquarePeg)
+  + getRadius(): int
+}
+
+RoundHole -> RoundPeg
+SquarePeg <- SquarePegAdapter
+@enduml

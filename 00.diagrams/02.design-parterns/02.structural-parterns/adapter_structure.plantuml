@@ -1,0 +1,22 @@
+@startuml Adapter Structure
+skinparam ClassAttributeIconSize 0
+
+class Client
+
+interface "Client Interface" as ClientInterface <<interface>> {
+  + method(data)
+}
+
+class Adapter implements ClientInterface {
+  - adaptee: Service
+  + method(data)
+}
+
+class Service {
+  ...
+  + serviceMethod(specialData)
+}
+
+Client -> ClientInterface
+Adapter::adaptee -> Service
+@enduml
