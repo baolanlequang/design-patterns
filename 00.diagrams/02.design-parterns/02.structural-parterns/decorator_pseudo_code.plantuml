@@ -1,0 +1,39 @@
+@startuml Decorator Pseudocode
+skinparam ClassAttributeIconSize 0
+
+class Application
+
+interface DataSource <<interface>> {
+  + writeData(data)
+  + readData()
+}
+
+class FileDataSource implements DataSource {
+  - finename
+  + FileDataSource(filename)
+  + writeData(data)
+  + readData()
+}
+
+class DataSourceDecorator implements DataSource {
+  - wrappee: DataSource
+  + DataSourceDecorator(c: DataSource)
+  + writeData(data)
+  + readData()
+}
+
+DataSourceDecorator o--> DataSource
+
+class EncryptionDecorator extends DataSourceDecorator {
+  + writeData(data)
+  + readData()
+}
+
+class CompressionDecorator extends DataSourceDecorator {
+  + writeData(data)
+  + readData()
+}
+
+Application --> DataSource
+
+@enduml

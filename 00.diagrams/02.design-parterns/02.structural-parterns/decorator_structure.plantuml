@@ -1,0 +1,30 @@
+@startuml Decorator Structure
+skinparam ClassAttributeIconSize 0
+
+class Client
+
+interface Component <<interface>> {
+  + execute()
+}
+
+class ConcreteComponent implements Component {
+  + execute()
+}
+
+class BaseDecorator implements Component {
+  - wrappee: Component
+  + BaseDecorator(c: Component)
+  + execute()
+}
+
+BaseDecorator o--> Component
+
+class ConcreteDecorator extends BaseDecorator {
+  + execute()
+  + extra()
+}
+
+Client --> Component
+
+
+@enduml
