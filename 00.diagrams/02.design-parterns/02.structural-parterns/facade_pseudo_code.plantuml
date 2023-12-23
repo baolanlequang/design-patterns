@@ -1,0 +1,23 @@
+@startuml Facade Pseudocode
+skinparam ClassAttributeIconSize 0
+
+class Application
+
+class VideoConverter {
+  ...
+  + convertVideo(filename, format)
+}
+
+rectangle Subsytem {
+  class VideoFile
+  class AudioMixer
+  class BitrateReader
+  class CodecFactory
+  class OggCOmpressionCodec
+  class MPEG4CompressionCodec
+}
+
+Application -> VideoConverter
+VideoConverter ..> Subsytem
+
+@enduml

@@ -1,0 +1,35 @@
+@startuml Facade Structure
+skinparam ClassAttributeIconSize 0
+
+class Client
+
+class Facade {
+  - linksToSubsystemObjects
+  - optionalAdditionalFacade
+  + subsystemOperation()
+}
+
+class AdditionalFacade {
+  ...
+  + anotherOperation()
+}
+
+rectangle Subsystem {
+  class "Subsystem" as subsys1
+  class "Subsystem" as subsys2
+  class "Subsystem" as subsys3
+  class "Subsystem" as subsys4
+}
+
+Client -> Facade
+Facade -> AdditionalFacade
+
+Facade ..> subsys1
+Facade ..> subsys2
+Facade ..> subsys3
+Facade ..> subsys4
+AdditionalFacade ..> subsys1
+AdditionalFacade ..> subsys2
+
+
+@enduml
