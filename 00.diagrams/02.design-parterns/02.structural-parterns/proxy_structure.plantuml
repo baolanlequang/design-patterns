@@ -1,0 +1,24 @@
+@startuml Proxy Structure
+skinparam ClassAttributeIconSize 0
+
+class Client
+
+interface ServiceInterface <<interface>> {
+  + operation()
+}
+
+class Service implements ServiceInterface {
+  + operation()
+}
+
+class Proxy implements ServiceInterface {
+  - realService: Service
+  + Proxy(s: Service)
+  + checkAccess()
+  + operation()
+}
+
+Proxy o-> Service
+
+Client -> ServiceInterface
+@enduml

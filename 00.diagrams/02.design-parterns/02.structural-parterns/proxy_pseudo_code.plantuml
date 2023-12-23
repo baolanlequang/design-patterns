@@ -1,0 +1,29 @@
+@startuml Proxy Pseudocode
+skinparam ClassAttributeIconSize 0
+
+class YouTubeManager
+
+interface ThirdPartyYouTubeLib <<interface>> {
+  + listVideos()
+  + getVideoInfor(id)
+  + downloadVideo(id)
+}
+
+class CachedYouTubeClass implements ThirdPartyYouTubeLib {
+  - service: ThirdPartyYouTubeLib
+  + CachedYouTubeClass(s: ThirdPartyYouTubeLib)
+  + listVideos()
+  + getVideoInfor(id)
+  + downloadVideo(id)
+}
+
+class ThirdPartyYouTubeClass implements ThirdPartyYouTubeLib {
+  + listVideos()
+  + getVideoInfor(id)
+  + downloadVideo(id)
+}
+
+CachedYouTubeClass o--> ThirdPartyYouTubeLib
+
+
+@enduml
