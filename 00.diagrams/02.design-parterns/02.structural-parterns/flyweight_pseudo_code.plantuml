@@ -1,0 +1,37 @@
+@startuml Flyweight Pseudocode
+skinparam ClassAttributeIconSize 0
+
+class TreeFactory {
+  - treeType: TreeType[]
+  + getTreeType(name, color, texture)
+}
+
+class TreeType {
+  - name
+  - color
+  - texture
+  + TreeType(name, color, texture)
+  + draw(canvas, x, y)
+}
+
+class Forest {
+  + trees: Tree[]
+  + plantTree(x, y, name, color, texture): Tree
+  + draw(canvas)
+}
+
+class Tree {
+  + x
+  + y
+  + type: TreeType
+  + draw(canvas)
+}
+
+Forest -> TreeFactory
+
+TreeFactory o--> TreeType
+Forest o--> Tree
+Tree -> TreeType
+
+
+@enduml

@@ -1,0 +1,45 @@
+@startuml Flyweight Structure
+skinparam ClassAttributeIconSize 0
+
+class Client
+
+class FlyweightFactory {
+  - cache: Flyweight[]
+  + getFlyweight(repeatingState)
+}
+
+note bottom of FlyweightFactory
+  if (cache[repeatingState] == null) {
+    cache[repeatingState] = Flyweight(repeatingState)
+  }
+  return cache[repeatingState]
+end note
+
+class Context {
+  - uniqueState
+  - flyweight
+  + Context(repeatingState, uniqueState)
+  + operation()
+}
+
+note left of Context::Context
+  self.uniqueState = uniqueState
+  self.flyweight = factory.getFlyweight(repeatingState)
+end note
+
+note left of Context::operation
+  operation.operation(uniqueState)
+end note
+
+class Flyweight {
+  - repeatingState
+  + operation(uniqueState)
+}
+
+FlyweightFactory o--> Flyweight
+
+Client *--> Context
+
+Context -> FlyweightFactory
+Context -> Flyweight
+@enduml
