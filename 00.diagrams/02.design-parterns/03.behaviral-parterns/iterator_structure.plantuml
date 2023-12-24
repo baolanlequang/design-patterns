@@ -1,0 +1,34 @@
+@startuml Iterator Structure
+skinparam ClassAttributeIconSize 0
+
+class Client
+
+interface Iterator <<interface>> {
+  + getNext()
+  + hasMore(): bool
+}
+
+class ConcreteIterator implements Iterator {
+  - collection: ConcreteCollection
+  - iterationState
+  + ConcreteIterator(c: ConcreteCollection)
+  + getNext()
+  + hasMore(): bool
+}
+
+interface IterableCollection <<interface>> {
+  + createIterator(): Iterator
+}
+
+class ConcreteCollection implements IterableCollection {
+  + createIterator(): Iterator
+}
+
+Iterator <. IterableCollection
+
+ConcreteIterator <-> ConcreteCollection
+
+Client --> Iterator
+Client --> IterableCollection
+
+@enduml

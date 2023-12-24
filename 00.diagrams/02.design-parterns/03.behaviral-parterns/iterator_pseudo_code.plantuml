@@ -1,0 +1,61 @@
+@startuml Iterator Pseudocode
+skinparam ClassAttributeIconSize 0
+
+class Application {
+  - spammer
+  - network
+  + sendSpamToFriends(profile)
+  + sendSpamToCoworkers(profile)
+}
+
+class SocialSpammer {
+  + send(iterator, message)
+}
+
+Application --> SocialSpammer
+
+class Profile {
+  + getId()
+  + getEmail()
+}
+
+SocialSpammer ..> Profile
+
+interface ProfileIterator <<interface>> {
+  + getNext(): Profile
+  + hasMore(): bool
+}
+
+ProfileIterator ..> Profile
+SocialSpammer --> ProfileIterator
+
+interface SocialNetwork <<interface>> {
+  + createFriendsIterator(profileId): ProfileIterator
+  + createCoworkersIterator(profileId): ProfileIterator
+}
+
+ProfileIterator <. SocialNetwork
+
+class Facebook implements SocialNetwork {
+  + createFriendsIterator(profileId): ProfileIterator
+  + createCoworkersIterator(profileId): ProfileIterator
+}
+
+class FacebookIterator implements ProfileIterator {
+  - facebook: Facebook
+  - profileId, type
+  - currentPosition
+  - cache: Profile[]
+  + FacebookIterator(...)
+  - lazyInit()
+  + getNext(): Profile
+  + hasMore(): bool
+}
+
+Facebook --> Profile
+
+Application --> Facebook
+
+FacebookIterator <-> Facebook
+
+@enduml
