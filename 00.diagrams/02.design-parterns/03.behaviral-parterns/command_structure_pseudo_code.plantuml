@@ -1,0 +1,72 @@
+@startuml Command Pseudocode
+skinparam ClassAttributeIconSize 0
+
+class Buttons
+class Shortcuts
+
+abstract class Command {
+  - app
+  - editor
+  - backup
+  + Command(app, editor)
+  + saveBackup()
+  + undo()
+  {abstract} + execute()
+}
+
+Buttons --> Command
+Shortcuts --> Command
+
+class CopyCommand extends Command {
+  + execute()
+}
+
+class CutCommand extends Command {
+  + execute()
+}
+
+class PasteCommand extends Command {
+  + execute()
+}
+
+class UndoCommand extends Command {
+  + execute()
+}
+
+class CommandHistory {
+  - history: Command[]
+  + push(c: Command)
+  + pop(): Command
+}
+
+CommandHistory o--> Command
+
+class Editor {
+  + text
+  + getSelection()
+  + deleteSelection()
+  + replaceSelection(text)
+}
+
+Editor <- CopyCommand
+Editor <- CutCommand
+Editor <- PasteCommand
+Editor <- UndoCommand
+
+class Application {
+  + editors: Editor[]
+  + activateEditor: Editor
+  + clipboard
+  + history: CommandHistory
+  + createUI()
+  + executeCommand(c: Command)
+  + undo()
+}
+
+Application o--> Editor
+Application --> CommandHistory
+
+Application --> Buttons
+Application --> Shortcuts
+
+@enduml
