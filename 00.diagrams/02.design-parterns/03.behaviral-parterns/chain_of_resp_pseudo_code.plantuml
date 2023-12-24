@@ -1,0 +1,37 @@
+@startuml Chain of Responsibility Structure
+skinparam ClassAttributeIconSize 0
+
+interface ComponentWithContextualHelp <<interface>> {
+  + showHelp()
+}
+
+abstract class Component implements ComponentWithContextualHelp {
+  - container: Container
+  + tooltipText
+  + showHelp()
+}
+
+abstract Container extends Component {
+  - children: Component
+  + add(child)
+}
+
+class Panel extends Container {
+  - modalHelpText
+  + showHelp()
+}
+
+class Dialog extends Container {
+  - wikiPageURL
+  + showHelp()
+}
+
+class Button
+
+Component <|- Button
+
+Component::container --> Container
+Container::children o--> Component
+
+
+@enduml

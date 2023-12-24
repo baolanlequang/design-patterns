@@ -1,0 +1,51 @@
+@startuml Chain of Responsibility Structure
+skinparam ClassAttributeIconSize 0
+
+class Client
+
+interface Handler <<interface>> {
+  + setNext(h: Handler)
+  + handle(request)
+}
+
+abstract class BaseHandler implements Handler {
+  - next: Handler
+  + setNext(h: Handler)
+  + handle(request)
+}
+
+class ConcreteHandlers extends BaseHandler {
+  ...
+  + handle(request)
+}
+
+BaseHandler o--> Handler
+
+Client -> Handler
+
+note right of BaseHandler::handle
+  if (next != null) {
+    next.handle(request)
+  }
+end note
+
+note right of ConcreteHandlers::handle
+  if (canHandle(request)) {
+    // ...
+  }
+  else {
+    parent::handle(request)
+  }
+end note
+
+note bottom of Client
+  h1 = HandlerA()
+  h2 = HandlerB()
+  h3 = HandlerC()
+  h1.setNext(h2)
+  h2.setNext(h3)
+  //...
+  h1.handle(request)
+end note
+
+@enduml
