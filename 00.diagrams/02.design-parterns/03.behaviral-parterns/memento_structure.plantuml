@@ -1,0 +1,29 @@
+@startuml Memento Structure
+skinparam ClassAttributeIconSize 0
+
+rectangle {
+  class Originator {
+    - state
+    + save(): Memento
+    + restore(m: Memento)
+  }
+
+  class Memento {
+    - state
+    - Memento(state)
+    - getState()
+  }
+}
+
+Originator .> Memento
+
+class Caretaker {
+  - originator: Originator
+  - history: Memento[]
+  + doSomething()
+  + undo()
+}
+
+Caretaker o-> Memento
+
+@enduml

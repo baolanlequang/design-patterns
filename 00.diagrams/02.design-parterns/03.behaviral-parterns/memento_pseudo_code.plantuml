@@ -1,0 +1,25 @@
+@startuml Memento Pseudocode
+skinparam ClassAttributeIconSize 0
+
+class Editor {
+  - state
+  + setState(x)
+  + createSnapshot()
+}
+
+class Snapshot {
+  - state
+  + Snapshot(state)
+  + restore()
+}
+
+class Command {
+  - backup: Snapshot
+  + makeBackup()
+  + undo()
+}
+
+Editor <-> Snapshot
+Snapshot <- Command
+
+@enduml
