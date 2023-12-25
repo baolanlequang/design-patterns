@@ -1,0 +1,33 @@
+@startuml Observer Pseudocode
+skinparam ClassAttributeIconSize 0
+
+class Editor {
+  + events: EventManager
+  + Editor()
+  + openFile()
+  + saveFile()
+}
+
+class EventManager {
+  - listeners
+  + subscribe(eventType, listener)
+  + unsubscribe(eventType, listener)
+  + notify(eventType, data)
+}
+
+interface EventListeners <<interface>> {
+  + update(filename)
+}
+
+class EmailAlertsListener implements EventListeners {
+  + update(filename)
+}
+
+class LoggingListener implements EventListeners {
+  + update(filename)
+}
+
+Editor o-> EventManager
+EventManager o--> EventListeners
+
+@enduml

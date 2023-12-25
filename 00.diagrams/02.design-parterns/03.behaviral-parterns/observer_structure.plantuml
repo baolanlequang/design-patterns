@@ -1,0 +1,28 @@
+@startuml Observer Structure
+skinparam ClassAttributeIconSize 0
+
+class Client
+
+class Publisher {
+  - subscribers: Subscriber[]
+  - mainState
+  + subscribe(s: Subscriber)
+  + unsubscribe(s: Subscriber)
+  + notifySubscriber()
+  + mainBusinessLogic()
+}
+
+interface Subscriber <<interface>> {
+  + update(context)
+}
+
+class ConcreteSubscribers implements Subscriber {
+  + update(context)
+}
+
+Publisher o-> Subscriber
+
+Client --> Publisher
+Client ..> ConcreteSubscribers
+
+@enduml
