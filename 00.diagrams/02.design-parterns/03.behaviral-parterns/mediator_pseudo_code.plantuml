@@ -1,0 +1,38 @@
+@startuml Mediator Pseudocode
+skinparam ClassAttributeIconSize 0
+
+interface Mediator <<interface>> {
+  + notify(sender: Component, event: string)
+}
+
+class AuthenticationDialog implements Mediator {
+  - title: string
+  - loginOrRegister: bool
+  - loginUserName, loginPassword: Textbox
+  - regUsername, regPassword, regEmail: Textbox
+  - ok, cancel: Button
+  - rememberMe: Checkbox
+  + AuthenticationDialog()
+  + notify(sender: Component, event: string)
+}
+
+class Component {
+  # dialog: Mediator
+  + Component()
+  + click()
+  + keypress()
+}
+
+Component <-> Mediator
+
+class Button extends Component
+class Textbox extends Component
+class Checkbox extends Component {
+  + check()
+}
+
+AuthenticationDialog *--> Button
+AuthenticationDialog *--> Textbox
+AuthenticationDialog *---> Checkbox
+
+@enduml

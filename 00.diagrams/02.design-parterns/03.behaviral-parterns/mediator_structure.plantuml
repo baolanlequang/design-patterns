@@ -1,0 +1,50 @@
+@startuml Mediator Structure
+skinparam ClassAttributeIconSize 0
+
+interface Mediator <<interface>> {
+  + notify(sender)
+}
+
+class ConcreteMediator implements Mediator {
+  - componentA
+  - componentB
+  - componentC
+  - componentD
+  + notify(sender)
+  + reactOnA()
+  + reactOnB()
+  + reactOnC()
+  + reactOnD()
+}
+
+class ComponentA {
+  - m: Mediator
+  + operationA()
+}
+
+class ComponentB {
+  - m: Mediator
+  + operationB()
+}
+
+class ComponentC {
+  - m: Mediator
+  + operationC()
+}
+
+class ComponentD {
+  - m: Mediator
+  + operationD()
+}
+
+ComponentA --> Mediator
+ComponentB --> Mediator
+Mediator <-- ComponentC
+Mediator <-- ComponentD
+
+ConcreteMediator *--> ComponentA
+ConcreteMediator *--> ComponentB
+ConcreteMediator *--> ComponentC
+ConcreteMediator *--> ComponentD
+
+@enduml
