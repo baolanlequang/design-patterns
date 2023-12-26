@@ -1,0 +1,26 @@
+@startuml Strategy Structure
+skinparam ClassAttributeIconSize 0
+
+class Context {
+  - strategy
+  + setStrategy(strategy)
+  + doSomething()
+}
+
+interface Strategy <<interface>> {
+  + execute(date)
+}
+
+class ConcreteStrategiess implements Strategy {
+  + execute(date)
+}
+
+Context o-> Strategy
+
+class Client
+
+Client .> ConcreteStrategiess
+
+Context <-- Client
+
+@enduml

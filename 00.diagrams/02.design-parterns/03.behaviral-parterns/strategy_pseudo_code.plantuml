@@ -1,0 +1,36 @@
+@startuml Strategy Pseudocode
+skinparam ClassAttributeIconSize 0
+
+class Context {
+  - strategy: Strategy
+  + setStrategy(strategy)
+  + executeStrategy(a, b)
+}
+
+interface Strategy <<interface>> {
+  + execute(a, b)
+}
+
+class ConcreteStrategyAdd implements Strategy {
+  + execute(a, b)
+}
+
+class ConcreteStrategySubtract implements Strategy {
+  + execute(a, b)
+}
+
+class ConcreteStrategyMultiply implements Strategy {
+  + execute(a, b)
+}
+
+Context o-> Strategy
+
+class ExampleApplication
+
+ExampleApplication .> ConcreteStrategyAdd
+ExampleApplication ..> ConcreteStrategySubtract
+ExampleApplication ..> ConcreteStrategyMultiply
+
+Context <-- ExampleApplication
+
+@enduml
