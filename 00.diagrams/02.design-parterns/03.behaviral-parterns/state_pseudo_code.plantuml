@@ -1,0 +1,36 @@
+@startuml State Pseudocode
+skinparam ClassAttributeIconSize 0
+
+class Player {
+  - state
+  + UI, volume, playlist, currentSong
+  + Player()
+  + changeState(state)
+  + clickLock()
+  + clickPlay()
+  + clickNext()
+  + clickPrevious()
+  + startPlayback()
+  + stopPlayback()
+  + nextSong()
+  + previousSong()
+  + fastForward()
+  + rewind()
+}
+
+abstract class State {
+  - player
+  + State(player)
+  {abstract} + clickLock()
+  {abstract} + clickPlay()
+  {abstract} + clickNext()
+  {abstract} + clickPrevious()
+}
+
+class ReadyState extends State
+class PlayingState extends State
+class LockedState extends State
+
+Player o-> State
+
+@enduml

@@ -1,0 +1,33 @@
+@startuml State Structure
+skinparam ClassAttributeIconSize 0
+
+class Context {
+  - state
+  + Context(initialState)
+  + changeState(state)
+  + doThis()
+  + doThat()
+}
+
+interface State <<interface>> {
+  + doThis()
+  + doThat()
+}
+
+class ConcreteStates implements State {
+  - context
+  + setContext(context)
+  + doThis()
+  + doThat()
+}
+
+Context o-> State
+
+class Client
+Client .> ConcreteStates
+
+Context <-- Client
+
+ConcreteStates --> Context
+
+@enduml
