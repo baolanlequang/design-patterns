@@ -1,0 +1,24 @@
+@startuml Template Method Structure
+skinparam ClassAttributeIconSize 0
+
+abstract class AbstractClass {
+  + templateMethod()
+  {abstract} + step1()
+  {abstract} + step2()
+  {abstract} + step3()
+  {abstract} + step4()
+}
+
+class ConcreteClass1 extends AbstractClass {
+  + step3()
+  + step4()
+}
+
+class ConcreteClass2 extends AbstractClass {
+  + step1()
+  + step2()
+  + step3()
+  + step4()
+}
+
+@enduml

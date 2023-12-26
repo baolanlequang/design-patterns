@@ -1,0 +1,29 @@
+@startuml Template Method Pseudocode
+skinparam ClassAttributeIconSize 0
+
+abstract class GameAI {
+  + takeTurn()
+  + collectResources()
+  + attack()
+  {abstract} + buildStructures()
+  {abstract} + buildUnits()
+  {abstract} + sendScouts(position)
+  {abstract} + sendWarriors(position)
+}
+
+class OrcsAI extends GameAI {
+  + buildStructures()
+  + buildUnits()
+  + sendScouts(position)
+  + sendWarriors(position)
+}
+
+class MonstersAI extends GameAI {
+  + collectResources()
+  + buildStructures()
+  + buildUnits()
+  + sendScouts(position)
+  + sendWarriors(position)
+}
+
+@enduml
