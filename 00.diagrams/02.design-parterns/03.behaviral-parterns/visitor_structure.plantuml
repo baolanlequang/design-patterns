@@ -1,0 +1,37 @@
+@startuml Visitor Structure
+skinparam ClassAttributeIconSize 0
+
+interface Visitor <<interface>> {
+  + visit(e: ElementA)
+  + visit(e: ElementB)
+}
+
+class ConcreteVisitors implements Visitor {
+  + visit(e: ElementA)
+  + visit(e: ElementB)
+}
+
+interface Element <<interface>> {
+  + accept(v: Visitor)
+}
+
+class ConcreteElementA implements Element {
+  + featureA()
+  + accept(v: Visitor)
+}
+
+class ConcreteElementB implements Element {
+  + featureB()
+  + accept(v: Visitor)
+}
+
+Visitor <. Element
+Visitor ..> ConcreteElementA
+Visitor ...> ConcreteElementB
+
+class Client
+
+ConcreteVisitors <.. Client
+Element <... Client
+
+@enduml

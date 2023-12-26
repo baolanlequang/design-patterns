@@ -1,0 +1,52 @@
+@startuml Visitor Pseudocode
+skinparam ClassAttributeIconSize 0
+
+interface Visitor <<interface>> {
+  + visitDot(d: Dot)
+  + visitCircle(c: Circle)
+  + visitRectangle(c: Rectangle)
+  + visitCompoundGraphic(c: CompoundGraphic)
+}
+
+class XMLExportVisitor implements Visitor {
+  + visitDot(d: Dot)
+  + visitCircle(c: Circle)
+  + visitRectangle(c: Rectangle)
+  + visitCompoundGraphic(c: CompoundGraphic)
+}
+
+interface Shape <<interface>> {
+  + move(x, y)
+  + draw()
+  + accept(v: Visitor)
+}
+
+class Dot implements Shape {
+  + accept(v: Visitor)
+}
+
+class Circle implements Shape {
+  + accept(v: Visitor)
+}
+
+class Rectangle implements Shape {
+  + accept(v: Visitor)
+}
+
+class CompoundGraphic implements Shape {
+  + accept(v: Visitor)
+}
+
+Visitor <. Shape
+
+Visitor ..> Dot
+Visitor ..> Circle
+Visitor ..> Rectangle
+Visitor ..> CompoundGraphic
+
+class Application
+
+XMLExportVisitor <.. Application
+Application ..> Shape
+
+@enduml
